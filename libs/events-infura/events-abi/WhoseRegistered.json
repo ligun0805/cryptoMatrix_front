@@ -1,0 +1,17 @@
+{
+  "anonymous": false,
+  "inputs": [
+    {
+      "indexed": true,
+      "name": "user",
+      "type": "address"
+    },
+    {
+      "indexed": false,
+      "name": "referrer",
+      "type": "address"
+    }
+  ],
+  "name": "WhoseRegistered",
+  "type": "event"
+}

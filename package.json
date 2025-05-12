@@ -1,0 +1,39 @@
+{
+  "name": "nuxt-app",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "start": "cross-env NUXT_HOST=0.0.0.0 NUXT_PORT=3051 node .output/server/index.mjs",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "devDependencies": {
+    "@nuxt/devtools": "latest",
+    "@types/node": "^22.5.3",
+    "cross-env": "^7.0.3",
+    "events": "^3.3.0",
+    "nuxt": "3.15.0",
+    "pug": "^3.0.2",
+    "pug-loader": "^2.4.0",
+    "sass": "^1.68.0",
+    "sass-loader": "^13.3.2",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "@nuxt/kit": "3.15.0",
+    "@pinia/nuxt": "^0.5.1",
+    "@vueuse/components": "^10.5.0",
+    "@vueuse/core": "^10.9.0",
+    "@vueuse/nuxt": "^10.9.0",
+    "axios": "^1.7.3",
+    "bootstrap": "5.3.3",
+    "caniuse-lite": "^1.0.30001640",
+    "mitt": "^3.0.1",
+    "pinia": "^2.1.7",
+    "vue": "^3.5.6",
+    "web3": "^4.10.0"
+  }
+}

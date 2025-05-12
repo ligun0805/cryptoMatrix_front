@@ -1,0 +1,206 @@
+// В начале файла
+@import "../../node_modules/bootstrap/scss/functions"
+@import "../../node_modules/bootstrap/scss/variables"
+@import "../../node_modules/bootstrap/scss/mixins"
+
+// fonts
+@import "fonts"
+$font-family-sans-serif: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default
+$font-family-monospace: 'DX-Rigraf', SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !default
+$font-family-base: $font-family-sans-serif
+$font-family-monospace: $font-family-monospace
+
+// my custom styles
+$bg-over-cover: #030118
+// 11111111111llllllll
+//$body-bg-dark: #030117
+
+// Импортируем все компоненты Bootstrap из отдельного файла
+@import "bootstrap-imports"
+
+.white-border, .wb
+  border: 1px solid rgba(255, 255, 255, 0.2)
+  border-radius: 8px
+
+@mixin top-gradient
+  background: radial-gradient(100.06% 120.49% at 50% -20.49%, rgba(255, 255, 255, 0.9) 0%, rgba(113, 61, 255, 0.9) 32.82%, rgba(0, 0, 0, 0) 78.46%) no-repeat
+
+@mixin bottom-gradient
+  background: radial-gradient(91.53% 133.1% at 50% 133.1%, rgba(255, 255, 255, 0.9) 0%, rgba(113, 61, 255, 0.9) 32.82%, rgba(0, 0, 0, 0) 78.46%)
+
+// Global layout
+body
+  font-family: $font-family-base
+  background-color: #040119 !important
+  &.is-sidebar-opened
+    #__nuxt
+      background: #030118
+#__nuxt
+  display: flex
+  min-height: 100vh
+  flex-direction: column
+header
+  height: 70px
+main
+  flex: 1
+  > .container
+    padding: 5rem 1.5rem 0
+body.is-main-page
+  @include top-gradient
+  height: 100vh
+
+// Responsive and common styles
+.over-cover
+  background: $bg-over-cover
+.navbar-container
+  flex-direction: row
+  @include media-breakpoint-down(lg)
+    flex-direction: column !important
+.nav-custom
+  display: flex
+  justify-content: space-between
+  flex-direction: row
+  margin-right: auto
+  @include media-breakpoint-down(lg)
+    order: -1
+    margin-right: 0 !important
+    width: 100%
+    padding-bottom: 2rem
+.navbar-container
+  display: flex
+  @include media-breakpoint-down(lg)
+    padding: 2.2rem 0 0
+.main-button
+  width: auto
+  @include media-breakpoint-down(lg)
+    width: 100% !important
+    margin-top: 1rem
+.nav-custom
+  &__graph
+    margin-right: 1.5rem
+    @include media-breakpoint-down(xl)
+      margin-right: 0.5rem
+footer
+  @include bottom-gradient
+  @include media-breakpoint-down(lg)
+    padding-top: 40px
+  .fl
+    &__top
+      @include media-breakpoint-down(lg)
+        padding: 0 16px !important
+    &__bottom
+      @include media-breakpoint-down(lg)
+        padding: 24px 16px 40px 16px !important
+
+// Predefined variables
+
+// Gradient
+$gradient: linear-gradient(180deg, rgba($white, 0), rgba($white, 1), rgba($white, 0.02))
+
+// Navbar
+$navbar-dark-brand-color: $white
+$navbar-brand-font-size: 1.5rem
+//$navbar-dark-active-color: red
+$nav-link-font-size: 1rem
+$nav-link-font-weight: 300
+//$navbar-dark-active-color: green
+//$nav-link-color: $white
+//$navbar-dark-active-color: $white
+//$navbar-hover-color: $white
+.navbar-brand
+  font-weight: 600
+
+.nav-link
+  --bs-nav-link-color: $white
+  --bs-navbar-active-color: $white
+  &.active
+    font-weight: 500
+  &:hover,&.active
+    text-decoration: underline
+
+//--bs-navbar-active-weight: $white
+
+  //--bs-navbar-color: black
+  //--bs-nav-link-color: black
+  //--bs-link-hover-color-rgb: red
+
+// Buttons
+$btn-padding-y: 0.5rem
+$btn-padding-x: 1.5rem
+$btn-border-radius: 5rem
+$btn-line-height: 1.5rem
+$btn-font-size: 1rem
+$btn-border-width: 1px
+
+//$border-width: 0
+
+.btn
+  --bs-btn-border-color: rgba(255, 255, 255, 0.2) !important
+
+.btn-cpink
+  box-shadow: 0 0 1rem -0.25rem #713DFF
+  backdrop-filter: blur(0.75rem)
+  background-image: linear-gradient(rgb(249, 90, 204) 0%, rgba(113, 61, 255, 0) 100%)
+  background-color: rgba(255, 255, 255, 0.02) !important
+  background-origin: border-box
+  background-repeat: repeat-x !important
+  border-color: rgba(255, 255, 255, 0.2)
+  border-style: solid
+  //border-width: 1px !important
+  height: 100%
+  //&:hover,&:active
+  //  background-image: linear-gradient(rgba(249, 90, 204, 1) 0%, rgba(113, 61, 255, 0) 100%)
+
+//$table-bg: red
+
+//// customizing the .table
+//$custom-table-variants: ("tangerine": $tangerine, "lightcornflowerblue": #8ECAE6)
+//$table-variants: map-merge($table-variants, $custom-table-variants)
+
+.table-spec
+  min-width: 100%
+  --bs-table-bg: transarent !important
+  &__thead
+    th
+      color: #7B859F
+      font-size: 12px
+      font-weight: 400
+      line-height: 30px
+      border-bottom: 1px solid #353445
+  &__tbody
+    color: #E4EBFA
+    font-size: 12px
+    font-weight: 400
+    line-height: 16px
+    td
+      padding: 0 0 5px 3px !important
+      &::before
+        content: ''
+        display: block
+        height: 7px
+    &_strip
+      td
+        border-bottom: 1px solid #353445
+        padding-bottom: 0.4rem
+
+.pink-num
+  color: #F95ACC
+  background-color: #1C1A2E
+  border-radius: 50%
+  display: flex
+  justify-content: center
+  align-items: center
+  height: 22px
+  width: 22px
+
+h5.centered-header
+  text-align: center
+  font-weight: 400
+  margin-bottom: 24px
+  @include media-breakpoint-up(md)
+    font-size: 36px
+
+// styles of components
+@import "assets/sass/components/main/MainIntro"
+@import "assets/sass/components/main/Referrals"
+@import "assets/sass/components/main/PhilanthropistBanner"

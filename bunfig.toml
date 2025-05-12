@@ -1,0 +1,2 @@
+[resolver]
+extensions = [".ts", ".js", ".tsx", ".jsx", ".json", ".mjs"] 

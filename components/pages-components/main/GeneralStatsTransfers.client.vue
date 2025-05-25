@@ -17,7 +17,6 @@
 <script setup>
 import MainBanner from "~/components/pages-components/main/MainBanner.vue";
 import { getBC } from "~/stores/useWeb3.js";
-import { GetEvents } from "~/libs/events-infura/abi-events.js";
 import { isClient } from "@vueuse/core";
 
 let BC;
@@ -37,40 +36,7 @@ const getTotalAccounts = async () => {
   if (!isClient) return;
   BC = getBC();
   if (BC && BC.value) {
-    // Получаем события прямых переводов
-    const directTransferEvents = await GetEvents("DirectTransfer");
-    console.log("DirectTransfer events:", directTransferEvents.length);
-
-    let directTransferAmount = 0;
-    if (directTransferEvents && directTransferEvents.length > 0) {
-      directTransferAmount = directTransferEvents.reduce(
-        (accumulator, currentValue) =>
-          accumulator + Number(currentValue.amount),
-        0
-      );
-      console.log(
-        "Direct transfers amount in BNB:",
-        directTransferAmount / 10 ** 18
-      );
-    }
-
-    // ВРЕМЕННОЕ РЕШЕНИЕ: жестко закодированное количество событий регистрации
-    // Замените 31 на актуальное количество из блок-эксплорера
-    const whoseRegisteredCount = 31;
-    console.log("WhoseRegistered events (hardcoded):", whoseRegisteredCount);
-
-    // Считаем сумму от регистраций (каждая по 0.01 BNB)
-    const registerAmount = whoseRegisteredCount * 10000000000000000n; // 0.01 BNB в Wei
-    console.log("Register amount in BNB:", Number(registerAmount) / 10 ** 18);
-
-    // Считаем общую сумму (используем Number для совместимости)
-    const totalWei = directTransferAmount + Number(registerAmount);
-    console.log(
-      "Total amount (DirectTransfer + Register):",
-      totalWei / 10 ** 18,
-      "BNB"
-    );
-
+    const totalWei = await BC.value.getTotalDeposited();
     totalAmountBnb.value = Number(totalWei) / 10 ** 18;
     const rate = await getBtcRate();
     totalAmountBtc.value = (totalAmountBnb.value / rate).toFixed(8);

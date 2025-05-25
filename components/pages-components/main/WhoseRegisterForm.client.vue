@@ -33,9 +33,10 @@
 </template>
 
 <script lang="js" setup>
-import { ref, watch } from 'vue'
+import { ref, watch, onMounted } from 'vue'
 import { useDisabled } from '~/composables/useDisabled'
 import {isClient} from "@vueuse/core";
+import { getBC } from '~/stores/useWeb3.js';
 
 let BC
 
@@ -81,7 +82,9 @@ const registerWhose = async () => {
     }
     BC = getBC()
     if (BC && BC.value) {
-      await BC.value.registerWhose(whoseAddress.value)
+      await BC.value.register(whoseAddress.value, {
+        value: BC.value.Web3MM.utils.toWei('0.01', 'ether')
+      });
     }
   }
 }
